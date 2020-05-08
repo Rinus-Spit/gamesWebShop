@@ -49,7 +49,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/categories/{category}', 'CategoryController@destroy')
         ->name('categories.destroy');
     Route::get('/orders', 'OrdersController@index')
-        ->name('orders.index')
+        ->name('orders.index');
+    Route::get('/orderlines/create', 'OrderLineController@create')
+        ->name('orderlines.create');
     Route::get('users/{user}/edit', 'UserController@edit')
         ->name('users.edit');
     Route::put('users/{user}', 'UserController@update')

@@ -45,7 +45,7 @@
                 </div>
                 @endif
                 <div class="order_product">
-                <form action="{{ route(orders.index) }}" method="get">
+                <form action="{{ route('orderlines.create') }}" method="get">
                     <button class="btn" type="submit">Bestel</button>
                 </form>
                 </div>
