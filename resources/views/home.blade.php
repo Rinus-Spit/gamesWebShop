@@ -45,9 +45,7 @@
                 </div>
                 @endif
                 <div class="order_product">
-                <form action="{{ route('orderlines.create') }}" method="get">
-                    <button class="btn" type="submit">Bestel</button>
-                </form>
+                <a href="{{ route('orderlines.create', $product) }}"><button class="btn" type="submit">Bestel</button></a>
                 </div>
             <!-- </div> -->
         </div>

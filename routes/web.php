@@ -37,7 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/categories', 'CategoryController@index')
         ->name('categories.index');
     Route::get('/categories/create', 'CategoryController@create')
-        ->name('categories.create');
+        ->name('categories.create')
+        ->middleware('can:create,orders');
     Route::get('/categories/{category}', 'CategoryController@show')
         ->name('categories.show');
     Route::post('/categories', 'CategoryController@store')
@@ -48,10 +49,16 @@ Route::middleware(['auth'])->group(function () {
         ->name('categories.update');
     Route::delete('/categories/{category}', 'CategoryController@destroy')
         ->name('categories.destroy');
-    Route::get('/orders', 'OrdersController@index')
+    Route::get('/orders', 'OrderController@index')
         ->name('orders.index');
-    Route::get('/orderlines/create', 'OrderLineController@create')
-        ->name('orderlines.create');
+    Route::get('/orders/{order}', 'OrderController@show')
+        ->name('orders.show');
+    Route::get('/orderlines/create/{product}', 'OrderLineController@create')
+        ->name('orderlines.create')
+        ->middleware('can:create,App\Order');
+    Route::post('/orderlines', 'OrderLineController@store')
+        ->name('orderlines.store')
+        ->middleware('can:create,App\Order');
     Route::get('users/{user}/edit', 'UserController@edit')
         ->name('users.edit');
     Route::put('users/{user}', 'UserController@update')

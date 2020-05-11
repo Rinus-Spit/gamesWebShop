@@ -42,26 +42,27 @@ class User extends Authenticatable
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class, 'order_user');
+        return $this->hasMany(Order::class);
     }
     
-    public function hasOrder($order) {
-        return $this->orders->contains($order);
-    }
+    // public function hasOrder($order) {
+    //     return $this->orders->contains($order);
+    // }
 
     public function orders_status($status)
     {
-        $user = User::whereHas('orders', function ($query){
-            global $status;
-            $query->where('status', '=', $status);
-        })->with('orders')->first();
+        // $user = User::whereHas('orders', function ($query){
+        //     global $status;
+        //     $query->where('status', '=', $status);
+        // })->with('orders')->first();
         // dd($user);
-        return $user;
+        $order = User::find(1)->orders->where('status',$status)->first();
+        return $order;
     }
 
-    public function active_order()
-    {
-        // $orders = $this->order_status('shopping')->first()->id;
-        return $this->orders_status('shopping');
-    }
+    // public function active_order()
+    // {
+    //     // $orders = $this->order_status('shopping')->first()->id;
+    //     return $this->orders_status('shopping');
+    // }
 }

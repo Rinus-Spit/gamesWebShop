@@ -18,10 +18,9 @@ class CreateOrderLines extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
-            $table->integer('line_number');
             $table->integer('quantity');
             $table->float('price');
-            $table->float('tax_amount');
+            $table->float('tax_amount')->default(0);
             $table->timestamps();
             $table->foreign('order_id')
                 ->references('id')

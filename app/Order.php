@@ -28,4 +28,9 @@ class Order extends Model
         'invoice_country'
     ];
 
+    public function order_lines()
+    {
+        return $this->hasMany(OrderLine::class);
+    }
+    
 }

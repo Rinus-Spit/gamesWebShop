@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use App\OrderLine;
+use App\Product;
 use Auth;
 
 class OrderLineController extends Controller
@@ -23,14 +25,23 @@ class OrderLineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($product)
     {
         $user = Auth::user();
-        $order_id = $user->active_order();
-        if (!$order_id) {
-            $order_id = Order::create(['user_id' => $user->id])->id;
+        $product = Product::find($product);
+        // foreach ($user->orders as $order) {
+        //     echo $order->id;
+        // }
+        // exit;
+        // dd($user->orders);
+        $order = $user->orders_status('shopping');
+        // dd($user->orders);
+        if (!$order) {
+            $order = Order::create(['user_id' => $user->id])->id;
+        } else {
+            $order_id = $order->id;
         }
-        return view('orderlines.create',['order' => $order_id]);
+        return view('orderlines.create',['order' => $order_id, 'product' => $product]);
     }
 
     /**
@@ -41,7 +52,16 @@ class OrderLineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = Product::find(request('product_id'));
+        $order = Order::find(request('order_id'));
+        $orderline = OrderLine::create([
+            'order_id' => request('order_id'),
+            'user_id' => Auth::user()->id,
+            'product_id' => request('product_id'),
+            'quantity' => request('quantity'),
+            'price' => $product->price]);
+
+        return redirect(route('orders.show',$order));
     }
 
     /**

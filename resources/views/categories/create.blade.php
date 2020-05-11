@@ -4,7 +4,7 @@
 
     <div id="page" class="container">
         <div class="content">
-            <h1>Nieuwe category</h1>
+            <h1>Nieuwe categorie</h1>
 
             <form method="post" action="{{ route('categories.store') }}">
                 @csrf
