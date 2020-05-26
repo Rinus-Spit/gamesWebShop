@@ -53,11 +53,23 @@ Route::middleware(['auth'])->group(function () {
         ->name('orders.index');
     Route::get('/orders/{order}', 'OrderController@show')
         ->name('orders.show');
+    Route::get('/orders/{order}/edit', 'OrderController@edit')
+        ->name('orders.edit')
+        ->middleware('can:create,App\Order');
+    Route::put('/orders/{order}', 'OrderController@update')
+        ->name('orders.update')
+        ->middleware('can:create,App\Order');
     Route::get('/orderlines/create/{product}', 'OrderLineController@create')
         ->name('orderlines.create')
         ->middleware('can:create,App\Order');
     Route::post('/orderlines', 'OrderLineController@store')
         ->name('orderlines.store')
+        ->middleware('can:create,App\Order');
+    Route::get('/orderlines/{orderline}/edit', 'OrderLineController@edit')
+        ->name('orderlines.edit')
+        ->middleware('can:create,App\Order');
+    Route::put('/orderlines/{orderline}', 'OrderLineController@update')
+        ->name('orderlines.update')
         ->middleware('can:create,App\Order');
     Route::get('users/{user}/edit', 'UserController@edit')
         ->name('users.edit');

@@ -29,6 +29,7 @@ class CreateOrdersTable extends Migration
             $table->string('invoice_postcode')->nullable();
             $table->string('invoice_city')->nullable();
             $table->string('invoice_country')->nullable();
+            $table->string('payment_method')->nullable();
             $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')

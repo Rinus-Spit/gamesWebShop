@@ -6,8 +6,9 @@
         <div class="content">
             <h1>Bestelling</h1>
 
-            <form method="post" action="{{ route('orderlines.store') }}">
+            <form method="post" action="{{ route('orderlines.update',$orderline) }}">
                 @csrf
+                @method('PUT')
 
                 <div class="field">
                     <!-- <label class="label" for="quantity">Aantal</label> -->
@@ -17,9 +18,7 @@
                             type="number" 
                             name="quantity" 
                             id="product_quantity"
-                            value="1">
-                        <input type="hidden" name="order_id" value="{{ $order }}">
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            value="{{ $orderline->quantity }}">
                     @error('name')
                         <p class="help alert-danger">{{ $errors->first('quantity') }}</p>
                     @enderror

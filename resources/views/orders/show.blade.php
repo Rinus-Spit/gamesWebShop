@@ -4,38 +4,53 @@
 
     <div id="page" class="container">
         <div class="content">
-            <ul class="style1">
+            <div class="table">
+                <div class="tr">
+                    <span class="td font-weight-bold" >
+                        Artikel
+                    </span>
+                    <span class="td font-weight-bold" >
+                        Prijs per stuk
+                    </span>
+                    <span class="td font-weight-bold" >
+                        Aantal
+                    </span>
+                    <span class="td font-weight-bold" >
+                        Totaalbedrag
+                    </span>
+                </div>
             @foreach ($order->order_lines as $order_line)
-                <li class="first">
-                    <h3>{{ $orderline->id }}</h3>
-                    <div class="order">
-                        {{ $orderline->order_id }}
-                    </div>
-                    <div class="product">
-                        {{ $orderline->product_id }}
-                    </div>
-                    <div class="user">
-                        {{ $orderline->user_id }}
-                    </div>
-                    <div class="amount">
-                        {{ $orderline->amount }}
-                    </div>
-                    <div class="price">
-                        {{ $orderline->price }}
-                    </div>
-                    <div class="product">
-                        Totaal: {{ $orderline->amount * $orderline->price }}
-                    </div>
-                    <!-- <div class="image">
-                        <img src="{{ $product->image }}" alt="image" class="img-fluid">
-                    </div> -->
-                    <div class="description">
-                        {{ $orderline->body }}
-                    </div>
-                </li>
+                <form action="{{ route('orderlines.update', $order_line) }}" class="tr" method="POST">
+                @csrf
+                @method('PUT')
+                    <span class="td">
+                        {{ $order_line->product->name }}
+                    </span>
+                    <span class="td price">
+                    @money($order_line->price)
+                    </span>
+                    <span class="td amount">
+                    <input 
+                            class="input @error('quantity') alert-danger @enderror" 
+                            type="number" 
+                            name="quantity" 
+                            id="product_quantity"
+                            value="{{ $order_line->quantity }}">
+                    </span>
+                    <span class="td">
+                        Totaal: 
+                    </span>
+                    <span class="td price">
+                        <spam class="price">@money($order_line->quantity * $order_line->price)</span>
+                    </span>
+                    <span class="td">
+                    <button class="btn btn-success is-link" type="submit">Pas order aan</button>
+                    </span>
+                    </form>
+                </form>
             @endforeach
-            </ul>
-
+            </div>
+            <button class="btn btn-success is-link" type="submit"><a href="{{ route('orders.edit', $order) }}">afrekenen</a></button>
         </div>
     </div>
 

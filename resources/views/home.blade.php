@@ -19,20 +19,19 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        @foreach ($categories as $category)
         <div class="col-md-2">
+            @foreach ($categories as $category)
             <div class="card">
                 <div class="card-body">
                     <a href="{{ route('categories.show', $category->name) }}"> {{ $category->name }} </a>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
-    </div>
-    <div class="row justify-content-center">
-        @foreach ($products as $product)
-        <div class="col-md-4">
-            <!-- <div class="card"> -->
+        <div class="col-md-10">
+            <div class="row">
+            @foreach ($products as $product)
+            <div class="col-md-3">
                 <div class="card-header">
                     <a href="{{ route('products.show', $product) }}"> {{ $product->name }} </a>
                 </div>
@@ -45,16 +44,13 @@
                 </div>
                 @endif
                 <div class="order_product">
-                <a href="{{ route('orderlines.create', $product) }}"><button class="btn" type="submit">Bestel</button></a>
+                <button class="btn" type="submit"><a href="{{ route('orderlines.create', $product) }}">Bestel</a></button>
                 </div>
-            <!-- </div> -->
+            </div>
+            @endforeach
+            </div>
+            {{ $products->links() }}
         </div>
-        @endforeach
-    </div>
-    {{ $products->links() }}
     <div>
-        <?php
-        ?>
-    </div>
 </div>
 @endsection

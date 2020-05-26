@@ -38,10 +38,16 @@ class OrderLineController extends Controller
         // dd($user->orders);
         if (!$order) {
             $order = Order::create(['user_id' => $user->id])->id;
+            return view('orderlines.create',['order' => $order_id, 'product' => $product]);
         } else {
             $order_id = $order->id;
+            $orderline = OrderLine::where([['order_id',$order_id],['product_id',$product->id]] )->first();
+            if ($orderline) {
+                return redirect(route('orderlines.edit', $orderline));
+            } else {
+                return view('orderlines.create',['order' => $order_id, 'product' => $product]);
+            }
         }
-        return view('orderlines.create',['order' => $order_id, 'product' => $product]);
     }
 
     /**
@@ -60,6 +66,7 @@ class OrderLineController extends Controller
             'product_id' => request('product_id'),
             'quantity' => request('quantity'),
             'price' => $product->price]);
+        $order->update_amount();
 
         return redirect(route('orders.show',$order));
     }
@@ -70,7 +77,7 @@ class OrderLineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(OrderLine $orderline)
     {
         //
     }
@@ -81,9 +88,10 @@ class OrderLineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(OrderLine $orderline)
     {
-        //
+        $product = Product::find($orderline->product_id);
+        return view('orderlines.edit',['orderline' => $orderline,'product'=>$product]);
     }
 
     /**
@@ -93,9 +101,13 @@ class OrderLineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, OrderLine $orderline)
     {
-        //
+        //dd($orderline);
+        $orderline->update(['quantity' => $request->input('quantity')]);
+        //dd($request);
+
+        return redirect(route('orders.show', $orderline->order));
     }
 
     /**
@@ -104,7 +116,7 @@ class OrderLineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(OrderLine $orderline)
     {
         //
     }

@@ -32,5 +32,19 @@ class Order extends Model
     {
         return $this->hasMany(OrderLine::class);
     }
+
+    public function update_amount()
+    {
+        $amount = 0;
+        $tax_amount = 0;
+        foreach ($this->order_lines as $order_line)
+        {
+            $amount += $order_line->quantity * $order_line->price;
+            $tax_amount += $order_line->tax_amount;
+        }
+        //$update_array = array('amount' => $amount, 'tax_amount' => $tax_amount);
+        $this->update(array('amount' => $amount, 'tax_amount' => $tax_amount));
+        return $this->hasMany(OrderLine::class);
+    }
     
 }
