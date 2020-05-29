@@ -10,12 +10,16 @@ span.amount input {
 DIV.table 
 {
     display:table;
+    width: max-content;
 }
 FORM.tr, DIV.tr
 {
     display:table-row;
+    width: max-content;
 }
 SPAN.td
 {
     display:table-cell;
+    padding-right: 1rem;
+    width: max-content;
 }

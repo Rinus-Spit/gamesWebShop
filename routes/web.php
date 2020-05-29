@@ -56,6 +56,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders/{order}/edit', 'OrderController@edit')
         ->name('orders.edit')
         ->middleware('can:create,App\Order');
+    Route::get('/orders/{order}/success', 'OrderController@success')
+        ->name('orders.success')
+        ->middleware('can:create,App\Order');
     Route::put('/orders/{order}', 'OrderController@update')
         ->name('orders.update')
         ->middleware('can:create,App\Order');
@@ -75,6 +78,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('users.edit');
     Route::put('users/{user}', 'UserController@update')
         ->name('users.update');
+    Route::name('webhooks.mollie')->post('webhooks/mollie', 'MollieWebhookController@handle');
 });
 
 

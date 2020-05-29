@@ -57,7 +57,7 @@
                             name="on_sale" 
                             id="product_on_sale"
                             value="1"
-                            {{ old($product->stock) ? 'checked' : '' }} >
+                            {{ old($product->on_sale) ? 'checked' : '' }} >
                     </div>
                 </div>
 

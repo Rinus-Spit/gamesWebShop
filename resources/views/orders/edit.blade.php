@@ -48,32 +48,47 @@
                 <div class="field">
                     <label class="label" for="delivery_street">Straat</label>
                     <span class="control">
-                        <input class="input" type="text" name="delivery_street" id="order_delivery_street" value="{{ $order->delivery_street }}">
+                        <input class="input @error('delivery_street') alert-danger @enderror" type="text" name="delivery_street" id="order_delivery_street" value="{{ old('delivery_street') ? old('delivery_street') : $order->delivery_street  }}">
                     </span>
+                    @error('delivery_street')
+                        <span class="alert alert-danger">{{ $errors->first('delivery_street') }}</span>
+                    @enderror
                     <label class="label" for="delivery_number">huisnummer</label>
                     <span class="control">
-                        <input class="input" type="text" name="delivery_number" id="order_delivery_number" value="{{ $order->delivery_number }}">
+                        <input class="input @error('delivery_number') alert-danger @enderror" type="text" name="delivery_number" id="order_delivery_number" value="{{ old('delivery_number') ? old('delivery_number') : $order->delivery_number }}">
                     </span>
+                    @error('delivery_number')
+                        <span class="alert alert-danger">{{ $errors->first('delivery_number') }}</span>
+                    @enderror
                 </div>
 
                 <div class="field">
                 <label class="label" for="delivery_postcode">postcode</label>
                     <span class="control">
-                        <input class="input" type="text" name="delivery_postcode" id="order_delivery_postcode" value="{{ $order->delivery_postcode }}">
+                        <input class="input @error('delivery_postcode') alert-danger @enderror" type="text" name="delivery_postcode" id="order_delivery_postcode" value="{{ old('delivery_postcode') ? old('delivery_postcode') : $order->delivery_postcode }}">
                     </span>
+                    @error('delivery_postcode')
+                        <span class="alert alert-danger">{{ $errors->first('delivery_postcode') }}</span>
+                    @enderror
                     <label class="label" for="delivery_city">stad</label>
                     <span class="control">
-                        <input class="input" type="text" name="delivery_city" id="order_delivery_city" value="{{ $order->delivery_city }}">
+                        <input class="input @error('delivery_city') alert-danger @enderror" type="text" name="delivery_city" id="order_delivery_city" value="{{ old('delivery_city') ? old('delivery_city') : $order->delivery_city }}">
                     </span>
+                    @error('delivery_city')
+                        <span class="alert alert-danger">{{ $errors->first('delivery_city') }}</span>
+                    @enderror
                 </div>
 
                 <div class="field">
                     <label class="label" for="payment_method">Betaalwijze</label>
                     <div class="control">
-                    <select id="category" multiple name="category[]">
+                    <select class="@error('payment_method') alert-danger @enderror" id="category" name="payment_method">
                         <option value="Ideal" {{ ($order->payment_method == 'Ideal') ? 'selected' : '' }}>Ideal</option>
                     </select>
                     </div>
+                    @error('payment_method')
+                        <div class="alert alert-danger">{{ $errors->first('payment_method') }}</div>
+                    @enderror
                 </div>
 
                 <div class="field is-grouped">

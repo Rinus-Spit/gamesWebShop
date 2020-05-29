@@ -57,6 +57,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
+        //if (old($order->delivery_street)) dd(old($order->delivery_street));
         return view('orders.edit', ['order' => $order]);
     }
 
@@ -69,7 +70,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $attributes = $this->validateOrder();
+        $order->update($attributes);
+        //$order->preparePayment();
+        $order->update(['status'=>'isPaid']);
+        return redirect(route('orders.success',$order->id));
     }
 
     /**
@@ -82,4 +87,27 @@ class OrderController extends Controller
     {
         //
     }
+
+    /**
+     * Order has been paid.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function success(Order $order)
+    {
+        return view('orders.success',['order' => $order]);
+    }
+
+    protected function validateOrder()
+    {
+        return request()->validate([
+            'delivery_street' => 'required',
+            'delivery_number' => 'required',
+            'delivery_postcode' => 'required',
+            'delivery_city' => 'required',
+            'payment_method' => 'required'
+        ]);
+    }
+
 }
