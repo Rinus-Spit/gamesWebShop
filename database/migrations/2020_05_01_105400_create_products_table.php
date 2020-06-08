@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->boolean('on_sale')->default(0);
             $table->string('excerpt');
             $table->text('body');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

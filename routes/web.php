@@ -34,6 +34,18 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:update,product');
     Route::delete('/products/{product}', 'ProductController@destroy')
         ->name('products.destroy');
+    Route::put('/products/{product}/star', 'RatingController@update')
+        ->name('ratings.update');
+    Route::get('/products/{product}/review', 'ReviewController@create')
+        ->name('reviews.create');
+    Route::post('/reviews', 'ReviewController@store')
+        ->name('reviews.store');
+    Route::get('/reviews/{product}/{review}/edit', 'ReviewController@edit')
+        ->name('reviews.edit');
+    Route::put('/reviews/{review}', 'ReviewController@update')
+        ->name('reviews.update');
+    Route::delete('/reviews/{review}', 'ReviewController@destroy')
+        ->name('reviews.destroy');
     Route::get('/categories', 'CategoryController@index')
         ->name('categories.index');
     Route::get('/categories/create', 'CategoryController@create')
@@ -78,7 +90,6 @@ Route::middleware(['auth'])->group(function () {
         ->name('users.edit');
     Route::put('users/{user}', 'UserController@update')
         ->name('users.update');
-    Route::name('webhooks.mollie')->post('webhooks/mollie', 'MollieWebhookController@handle');
 });
 
 

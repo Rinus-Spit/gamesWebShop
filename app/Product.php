@@ -22,6 +22,17 @@ class Product extends Model
     
     public function hasCategory($category) {
         return $this->categories->contains($category);
-    }    
+    }
+
+    public function ratings()
+    {
+        return $this->belongsToMany(User::class, 'ratings')->withPivot('rating');
+    }
+
+
+    public function reviews()
+    {
+        return $this->belongsToMany(User::class, 'reviews')->withPivot(['body','id']);
+    }
 
 }

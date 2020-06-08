@@ -31,4 +31,11 @@ class OrderLine extends Model
         return $this->belongsTo(Order::class);
     }
     
+    public function update_stock($stock_update)
+    {
+        $product = $this->product();
+        $product->decrement('stock',$stock_update);
+        return;
+    }
+    
 }

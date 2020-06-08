@@ -49,6 +49,34 @@
                     </form>
                 </form>
             @endforeach
+                <div class="tr">
+                    <span class="td">
+                    </span>
+                    <span class="td price">
+                    </span>
+                    <span class="td amount">
+                    </span>
+                    <span class="td">
+                        <hr style="border: 1px solid black;">
+                    </span>
+                    <span class="td price">
+                    <hr style="border: 1px solid black;">
+                    </span>
+                </div>
+                <div class="tr">
+                    <span class="td">
+                    </span>
+                    <span class="td price">
+                    </span>
+                    <span class="td amount">
+                    </span>
+                    <span class="td">
+                        Totaal: 
+                    </span>
+                    <span class="td price">
+                        <spam class="price">@money($order->amount)</span>
+                    </span>
+                </div>
             </div>
             <button class="btn btn-success is-link" type="submit"><a href="{{ route('orders.edit', $order) }}">afrekenen</a></button>
         </div>

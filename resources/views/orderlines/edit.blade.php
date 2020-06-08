@@ -19,7 +19,7 @@
                             name="quantity" 
                             id="product_quantity"
                             value="{{ $orderline->quantity }}">
-                    @error('name')
+                    @error('quantity')
                         <p class="help alert-danger">{{ $errors->first('quantity') }}</p>
                     @enderror
                     </div>

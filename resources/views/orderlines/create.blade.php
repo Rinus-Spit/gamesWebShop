@@ -16,11 +16,11 @@
                             class="input @error('quantity') alert-danger @enderror" 
                             type="number" 
                             name="quantity" 
-                            id="product_quantity"
+                            id="quantity"
                             value="1">
                         <input type="hidden" name="order_id" value="{{ $order }}">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    @error('name')
+                    @error('quantity')
                         <p class="help alert-danger">{{ $errors->first('quantity') }}</p>
                     @enderror
                     </div>

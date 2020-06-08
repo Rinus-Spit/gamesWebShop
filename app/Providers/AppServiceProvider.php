@@ -30,6 +30,17 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo '&euro;' . number_format($amount, 2); ?>";
         });
 
+        Blade::directive('stars', function ($stars) {
+            $showstars = '';
+            $tel = intval($stars);
+            $showstars .= $stars;
+            $showstars .= $tel;
+            for ($i=0;$i<$tel;$i++) {
+                $showstars .=  '<i class="fa fa-star text-warning" aria-hidden="true"></i>';
+            }
+            return "<?php echo '$showstars'; ?>";
+        });
+
         /**
          * Paginate a standard Laravel Collection.
          *

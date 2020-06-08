@@ -72,7 +72,7 @@ class OrderController extends Controller
     {
         $attributes = $this->validateOrder();
         $order->update($attributes);
-        //$order->preparePayment();
+        $order->update_stock();
         $order->update(['status'=>'isPaid']);
         return redirect(route('orders.success',$order->id));
     }

@@ -26,8 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(6);
+        $sales = Product::all()->where('on_sale',1);
+        $products = Product::latest()->paginate(8);
         $categories = Category::all();
-        return view('home', ['products' => $products, 'categories' => $categories]);
+        //dd($sales);
+        return view('home', ['products' => $products, 'categories' => $categories, 'sales' => $sales]);
     }
 }

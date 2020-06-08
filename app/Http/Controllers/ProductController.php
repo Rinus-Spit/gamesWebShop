@@ -15,11 +15,12 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $sales = $products->sales();
         if (request('category')) {
             $category = Category::where('name', request('category'))->first();
-            $products = $category->products->paginate(6);
+            $products = $category->products->paginate(8);
         } else {
-            $products = Product::latest()->paginate(6);
+            $products = Product::latest()->paginate(8);
         }
         //dd($products);
 
@@ -59,7 +60,20 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show', ['product' => $product]);
+        $rating =  $product->ratings->find(auth()->user()->id);
+        if ($rating) {
+            $stars = $rating->pivot->rating;
+        } else {
+            $stars = 0;
+        }
+        $showstars = '';
+        //$tel = intval($stars);
+        //$showstars .= $stars;
+        //$showstars .= $tel;
+        for ($i=0;$i<$stars;$i++) {
+            $showstars .=  '<i class="fa fa-star text-warning" aria-hidden="true"></i>';
+        }
+    return view('products.show', ['product' => $product, 'rating' => $showstars]);
     }
 
     /**

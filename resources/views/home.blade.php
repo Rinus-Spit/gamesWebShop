@@ -30,6 +30,30 @@
         </div>
         <div class="col-md-10">
             <div class="row">
+            @foreach ($sales as $product)
+            <div class="col-md-3">
+                <div class="card-header">
+                    <a href="{{ route('products.show', $product) }}"> {{ $product->name }} </a>
+                </div>
+                <div class="card-body">
+                    {{ $product->excerpt }}
+                </div>
+                @if ( $product->image )
+                <div class="image">
+                    <img src="images/products/{{ $product->image }}" alt="image" class="img-fluid">
+                </div>
+                @endif
+                @can ('create',App\Order::class)
+                <div class="order_product">
+                <button class="btn" type="submit"><a href="{{ route('orderlines.create', $product) }}">Bestel</a></button>
+                </div>
+                @endcan
+            </div>
+            @endforeach
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
             @foreach ($products as $product)
             <div class="col-md-3">
                 <div class="card-header">
@@ -40,12 +64,14 @@
                 </div>
                 @if ( $product->image )
                 <div class="image">
-                    <img src="{{ $product->image }}" alt="image" class="img-fluid">
+                    <img src="images/products/{{ $product->image }}" alt="image" class="img-fluid">
                 </div>
                 @endif
+                @can ('create',App\Order::class)
                 <div class="order_product">
                 <button class="btn" type="submit"><a href="{{ route('orderlines.create', $product) }}">Bestel</a></button>
                 </div>
+                @endcan
             </div>
             @endforeach
             </div>

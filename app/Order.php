@@ -48,6 +48,16 @@ class Order extends Model
         return $this->hasMany(OrderLine::class);
     }
     
+    public function update_stock()
+    {
+        foreach ($this->order_lines as $order_line)
+        {
+            $product = $order_line->product();
+            $product->decrement('stock',$order_line->quantity);
+        }
+        return;
+    }
+    
     public function preparePayment()
     {
         $payment = Mollie::api()->payments->create([
