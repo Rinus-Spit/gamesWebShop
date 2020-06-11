@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Product;
 use App\Order;
+use App\User;
 use App\OrderLine;
 
 class BouncerSeeder extends Seeder
@@ -18,9 +19,21 @@ class BouncerSeeder extends Seeder
 
         Bouncer::allow('contributor')->toManage( App\Product::class);
         Bouncer::allow('contributor')->toManage( App\Category::class);
-        Bouncer::allow('contributor')->to('view', App\Order::class);
+        Bouncer::allow('contributor')->toManage( App\Order::class);
+        Bouncer::allow('contributor')->toManage( App\OrderLine::class);
         Bouncer::allow('customer')->toManage( App\Order::class);
         Bouncer::allow('customer')->toManage( App\OrderLine::class);
         Bouncer::allow('customer')->to('view', App\Category::class);
+        $users = App\User::all();
+        foreach ($users as $user) 
+        {
+            if ($user->id == 1) 
+            {
+                $user->assign('admin');
+            } else 
+            {
+                $user->assign('customer');
+            }
+        }
     }
 }

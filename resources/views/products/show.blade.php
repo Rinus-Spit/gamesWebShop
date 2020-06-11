@@ -63,12 +63,13 @@
                             <input type="hidden" name="product_id" value="{{$product->id }}">
                             <a href="/reviews/{{$product->id }}/{{$review->pivot->id}}/edit">
                             @endif
-                            {{ $review->body }}
+                            {{ $review->pivot->body }}
                             @if ($review->id === auth()->user()->id)
                             </a>
                             <button class="btn" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
                             </form>
                             @endif
+                            
                         </div>
                         @endforeach
                     </div>

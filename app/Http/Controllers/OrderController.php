@@ -15,7 +15,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::get()->paginate(8);
+        $user = Auth::user();
+        if ($user->isAn('admin')) {
+            $orders = Order::get()->paginate(8);
+        } else {
+            $orders = Order::where('user_id',$user->id)->get()->paginate(8);
+        }
         return view('orders.index', ['orders' => $orders]);
     }
 

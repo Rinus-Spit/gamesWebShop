@@ -43,12 +43,17 @@
                 @endcan
                 @if (Auth::user()->isAn('admin'))
                 <a class="navbar-brand" href="{{ route('orders.index') }}">
-                    Orders
+                    Bestellingen
                 </a>
                 @endif
                 @if ($order=Auth::user()->orders_status('shopping'))
                 <a class="navbar-brand" href="{{ route('orders.show',$order) }}">
-                    winkelmand
+                    Winkelmand
+                </a>
+                @endif
+                @if ($order=Auth::user()->orders_status('isPaid') && Auth::user()->isNotAn('admin'))
+                <a class="navbar-brand" href="{{ route('orders.index') }}">
+                    Bestellingen
                 </a>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

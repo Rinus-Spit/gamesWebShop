@@ -9,18 +9,18 @@
                 <li class="">
                     <h3>
                         {{ $order->id }} {{ $order->status }}
-                        @can('update', App\Order::class)
+                        @if (($order->status == 'shopping' && can('update', App\Order::class)) || Auth::user()->isAn('admin'))
                         <a href="{{ route('orders.edit', $order) }}">
                         <i class="fas fa-edit"></i>
                         </a>
-                        @endcan
-                        @can('delete', App\Order::class)
+                        @endif
+                        @if (($order->status == 'shopping' && can('delete', App\Order::class)) || Auth::user()->isAn('admin'))
                         <form class="inline" method="post" action="{{ route('orders.destroy',$order->id,false) }}">
                         @csrf
                         @method('DELETE')
                         <button class="btn" type="submit"><i class="fas fa-trash-alt"></i></button>
                         </form>
-                        @endcan
+                        @endif
                     </h3>
                     <div class="user">
                     {{ App\User::find($order->user_id)->name}}

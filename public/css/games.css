@@ -7,7 +7,7 @@
 span.amount input {
     width: 5rem;
 }
-DIV.amount {
+DIV.amount, DIV.price {
     width: max-content;
 }
 DIV.table 

@@ -92,7 +92,7 @@ class ProductSeeder extends Seeder
             'body' => '4 bidding boxes om te bieden',
             'price' => 21,
             'stock' => 28,
-            'image' => 'bidding_box.jpeg',
+            'image' => 'bidding_box.png',
             'created_at' => now(),
             'updated_at' => now()
         ]);
