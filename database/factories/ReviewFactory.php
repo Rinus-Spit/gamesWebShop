@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\review;
+use App\Review;
 use Faker\Generator as Faker;
 
 $factory->define(review::class, function (Faker $faker) {

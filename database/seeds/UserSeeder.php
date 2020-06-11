@@ -16,15 +16,6 @@ class UserSeeder extends Seeder
             'email' => 'rinus.spit@home.nl',
             'password' => Hash::make('X5c5TbhR9L339nb'),
         ]);
-        DB::table('users')->insert([
-            'name' => 'Donald Duck',
-            'email' => 'donald.duck@disney.com',
-            'password' => Hash::make('L8BetPbkgvEnY6g'),
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Mickey Mouse',
-            'email' => 'mickey.mouse@disney.com',
-            'password' => Hash::make('X5c5TbhR9L339nb'),
-        ]);
+        $users = factory(App\User::class, 50)->create();
     }
 }

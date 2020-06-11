@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class rating extends Model
+class Rating extends Model
 {
     /**
      * The attributes that are mass assignable.

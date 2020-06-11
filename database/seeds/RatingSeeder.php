@@ -11,6 +11,6 @@ class RatingSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $ratings = factory(App\Rating::class, 100)->create();
     }
 }

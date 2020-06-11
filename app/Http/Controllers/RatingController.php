@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\rating;
-use App\product;
+use App\Rating;
+use App\Product;
 use Auth;
 use Illuminate\Http\Request;
 

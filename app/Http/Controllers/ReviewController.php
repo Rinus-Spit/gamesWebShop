@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\review;
-use App\product;
+use App\Review;
+use App\Product;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller

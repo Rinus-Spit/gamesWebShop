@@ -29,10 +29,19 @@ class Product extends Model
         return $this->belongsToMany(User::class, 'ratings')->withPivot('rating');
     }
 
-
     public function reviews()
     {
         return $this->belongsToMany(User::class, 'reviews')->withPivot(['body','id']);
+    }
+
+    public function showStars($count = 0)
+    {
+        $show = '<div class="ratingbox  text-warning">';
+        $rating = floor($count * 20);
+        $show .= '<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+        $show .= '<div class="rating" style="width:'.$rating.'%;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>';
+        $show .= '</div>';
+        return $show;
     }
 
 }

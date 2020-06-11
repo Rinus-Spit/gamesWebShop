@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use Auth;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,7 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::get()->paginate(8);
+        return view('orders.index', ['orders' => $orders]);
     }
 
     /**
@@ -57,8 +59,13 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //if (old($order->delivery_street)) dd(old($order->delivery_street));
-        return view('orders.edit', ['order' => $order]);
+        if ((Auth::user()->id) == $order->user_id )
+        {
+            return view('orders.topay', ['order' => $order]);
+        } else
+        {
+            return view('orders.edit', ['order' => $order]);
+        }
     }
 
     /**
@@ -74,7 +81,7 @@ class OrderController extends Controller
         $order->update($attributes);
         $order->update_stock();
         $order->update(['status'=>'isPaid']);
-        return redirect(route('orders.success',$order->id));
+        return redirect(route('orders.pay',$order->id));
     }
 
     /**
@@ -85,7 +92,31 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        foreach ($order->order_lines as $orderline)
+        {
+            $orderline->update_stock(-$orderline->quantity);
+            $orderline->delete($orderline->id);
+            //dd($orderline);
+        }
+        $order->delete($order);
+
+        if (Auth::user()->isAn('admin'))
+        {
+            return redirect(route('orders.index'));
+        }
+
+        return redirect(route('home'));
+    }
+
+    /**
+     * Pay order.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function pay(Order $order)
+    {
+        return view('orders.pay',['order' => $order]);
     }
 
     /**
@@ -97,6 +128,17 @@ class OrderController extends Controller
     public function success(Order $order)
     {
         return view('orders.success',['order' => $order]);
+    }
+
+    /**
+     * Order has been paid.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function fail(Order $order)
+    {
+        return view('orders.fail',['order' => $order]);
     }
 
     protected function validateOrder()

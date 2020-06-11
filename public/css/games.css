@@ -7,6 +7,9 @@
 span.amount input {
     width: 5rem;
 }
+DIV.amount {
+    width: max-content;
+}
 DIV.table 
 {
     display:table;
@@ -36,3 +39,25 @@ button.link {
 	border: none;
 	cursor: pointer;
 }
+.ratingbox {
+    position:relative;
+    vertical-align: middle;
+    font-size: 3/3em;
+    height: 100%;
+    width: 81px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+/* .ratingbox:before{
+    content: "\f006 \f006 \f006 \f006 \f006";
+} */
+.ratingbox .rating {
+    position: absolute;
+    left:0;
+    top:0;
+    white-space:nowrap;
+    overflow:hidden;
+}
+/* .ratingbox .rating:before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+} */

@@ -3,9 +3,8 @@
 @section ('content')
 
     <div id="page" class="container">
-        <div class="content">
-            <h1>Afrekenen</h1>
-
+        <div class="content text-danger">
+            <h3 class="text-danger">Bestelling {{ $order->id }} is niet betaald</h3>
             <div class="table">
                 <div class="tr">
                     <span class="td font-weight-bold" >
@@ -21,7 +20,7 @@
                         Totaalbedrag
                     </span>
                 </div>
-                @foreach ($order->order_lines as $order_line)
+            @foreach ($order->order_lines as $order_line)
                 <div class="tr">
                     <span class="td">
                         {{ $order_line->product->name }}
@@ -30,7 +29,7 @@
                     @money($order_line->price)
                     </span>
                     <span class="td amount">
-                            {{ $order_line->quantity }}
+                    {{ $order_line->quantity }}
                     </span>
                     <span class="td">
                         Totaal: 
@@ -39,7 +38,7 @@
                         <spam class="price">@money($order_line->quantity * $order_line->price)</span>
                     </span>
                 </div>
-                @endforeach
+            @endforeach
                 <div class="tr">
                     <span class="td">
                     </span>
@@ -67,21 +66,10 @@
                     <span class="td price">
                         <spam class="price">@money($order->amount)</span>
                     </span>
-                    <span class="td">
-                    <form action="{{ route('orders.destroy', $order) }}"  method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-success is-link" type="submit">Verwijder order</button>
-                    </form>
-                    </span>
                 </div>
             </div>
+            <a href="{{ route('orders.edit',['order'=>$order]) }}"><button>Nog een keer proberen</button></a>
         </div>
     </div>
-
-@endsection
-
-@section ('javascript')
-
 
 @endsection

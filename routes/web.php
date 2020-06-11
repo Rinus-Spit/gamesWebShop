@@ -68,11 +68,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders/{order}/edit', 'OrderController@edit')
         ->name('orders.edit')
         ->middleware('can:create,App\Order');
+    Route::get('/orders/{order}/pay', 'OrderController@pay')
+        ->name('orders.pay')
+        ->middleware('can:create,App\Order');
     Route::get('/orders/{order}/success', 'OrderController@success')
         ->name('orders.success')
         ->middleware('can:create,App\Order');
+    Route::get('/orders/{order}/fail', 'OrderController@fail')
+        ->name('orders.fail')
+        ->middleware('can:create,App\Order');
     Route::put('/orders/{order}', 'OrderController@update')
         ->name('orders.update')
+        ->middleware('can:create,App\Order');
+    Route::delete('/orders/{order}', 'OrderController@destroy')
+        ->name('orders.destroy')
         ->middleware('can:create,App\Order');
     Route::get('/orderlines/create/{product}', 'OrderLineController@create')
         ->name('orderlines.create')

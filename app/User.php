@@ -56,7 +56,7 @@ class User extends Authenticatable
         //     $query->where('status', '=', $status);
         // })->with('orders')->first();
         // dd($user);
-        $order = User::find(1)->orders->where('status',$status)->first();
+        $order = $this->orders->where('status',$status)->first();
         return $order;
     }
 

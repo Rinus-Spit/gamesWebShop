@@ -41,6 +41,11 @@
                     Categorieën
                 </a>
                 @endcan
+                @if (Auth::user()->isAn('admin'))
+                <a class="navbar-brand" href="{{ route('orders.index') }}">
+                    Orders
+                </a>
+                @endif
                 @if ($order=Auth::user()->orders_status('shopping'))
                 <a class="navbar-brand" href="{{ route('orders.show',$order) }}">
                     winkelmand

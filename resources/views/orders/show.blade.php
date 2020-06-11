@@ -76,6 +76,13 @@
                     <span class="td price">
                         <spam class="price">@money($order->amount)</span>
                     </span>
+                    <span class="td">
+                    <form action="{{ route('orders.destroy', $order) }}"  method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-success is-link" type="submit">Verwijder order</button>
+                    </form>
+                    </span>
                 </div>
             </div>
             <button class="btn btn-success is-link" type="submit"><a href="{{ route('orders.edit', $order) }}">afrekenen</a></button>

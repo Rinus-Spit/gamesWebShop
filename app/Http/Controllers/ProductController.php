@@ -15,13 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $sales = $products->sales();
-        if (request('category')) {
-            $category = Category::where('name', request('category'))->first();
-            $products = $category->products->paginate(8);
-        } else {
-            $products = Product::latest()->paginate(8);
-        }
+        $products = Product::latest()->paginate(8);
         //dd($products);
 
         return view('products.index', ['products' => $products]);
