@@ -27,6 +27,8 @@ class ProductSeeder extends Seeder
         $product->categories()->attach($category);
         $category = Category::where('name', '=', 'boardgame')->firstOrFail();
         $product->categories()->attach($category);
+        $category = Category::where('name', '=', 'strategy game')->firstOrFail();
+        $product->categories()->attach($category);
         $product = Product::create([
             'name' => 'spel kaarten',
             'excerpt' => 'spel kaarten',
@@ -41,6 +43,8 @@ class ProductSeeder extends Seeder
         $category = Category::where('name', '=', 'cardgame')->firstOrFail();
         $product->categories()->attach($category);
         $category = Category::where('name', '=', 'mind sport')->firstOrFail();
+        $product->categories()->attach($category);
+        $category = Category::where('name', '=', 'strategy game')->firstOrFail();
         $product->categories()->attach($category);
         $product = Product::create([
             'name' => 'Dammen',
@@ -57,6 +61,8 @@ class ProductSeeder extends Seeder
         $product->categories()->attach($category);
         $category = Category::where('name', '=', 'mind sport')->firstOrFail();
         $product->categories()->attach($category);
+        $category = Category::where('name', '=', 'strategy game')->firstOrFail();
+        $product->categories()->attach($category);
         $product = Product::create([
             'name' => 'Schaken',
             'excerpt' => 'Vang de koning',
@@ -70,6 +76,8 @@ class ProductSeeder extends Seeder
         $category = Category::where('name', '=', 'boardgame')->firstOrFail();
         $product->categories()->attach($category);
         $category = Category::where('name', '=', 'mind sport')->firstOrFail();
+        $product->categories()->attach($category);
+        $category = Category::where('name', '=', 'strategy game')->firstOrFail();
         $product->categories()->attach($category);
         $product = Product::create([
             'name' => 'Go',
@@ -85,6 +93,8 @@ class ProductSeeder extends Seeder
         $category = Category::where('name', '=', 'boardgame')->firstOrFail();
         $product->categories()->attach($category);
         $category = Category::where('name', '=', 'mind sport')->firstOrFail();
+        $product->categories()->attach($category);
+        $category = Category::where('name', '=', 'strategy game')->firstOrFail();
         $product->categories()->attach($category);
         $product = Product::create([
             'name' => 'Bidding boxes',
@@ -122,12 +132,12 @@ class ProductSeeder extends Seeder
         $category = Category::where('name', '=', 'boardgame')->firstOrFail();
         $product->categories()->attach($category);
         $product = Product::create([
-            'name' => 'Yathzee',
+            'name' => 'Yahtzee',
             'excerpt' => 'verkrijg meer punten dan je tegenstander',
             'body' => 'Gooi goed met de dobbelstenen en verkrij zo veel mogelijk punten',
             'price' => 17,
             'stock' => 110,
-            'image' => 'yathzee.jpeg',
+            'image' => 'yahtzee.jpeg',
             'created_at' => now(),
             'updated_at' => now()
         ]);

@@ -51,10 +51,11 @@ class CategoryController extends Controller
     public function show($category)
     {
         $cat = Category::where('name', $category)->first();
+        $categories = Category::all();
         // dd($cat);
-        $products = $cat->products->paginate(6);
+        $products = $cat->products->paginate(8);
 
-        return view('products.index', ['products' => $products]);
+        return view('products.home', ['products' => $products, 'categories' => $categories]);
     }
 
     /**

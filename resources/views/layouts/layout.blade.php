@@ -45,6 +45,9 @@
                 <a class="navbar-brand" href="{{ route('orders.index') }}">
                     Bestellingen
                 </a>
+                <a class="navbar-brand" href="{{ route('omzet.index') }}">
+                    Omzet
+                </a>
                 @endif
                 @if ($order=Auth::user()->orders_status('shopping'))
                 <a class="navbar-brand" href="{{ route('orders.show',$order) }}">

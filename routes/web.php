@@ -95,6 +95,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/orderlines/{orderline}', 'OrderLineController@update')
         ->name('orderlines.update')
         ->middleware('can:create,App\Order');
+    Route::get('/omzet', 'OmzetController@index')
+        ->name('omzet.index');
+    Route::get('/omzet/{year}', 'OmzetController@year')
+        ->name('omzet.year');
+    Route::get('/omzet/{year}/{month}', 'OmzetController@month')
+        ->name('omzet.month');
     Route::get('users/{user}/edit', 'UserController@edit')
         ->name('users.edit');
     Route::put('users/{user}', 'UserController@update')
