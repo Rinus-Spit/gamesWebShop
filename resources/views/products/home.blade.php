@@ -38,6 +38,9 @@
                 <div class="card-body">
                     {{ $product->excerpt }}
                 </div>
+                <div class="price">
+                    @money($product->price)
+                </div>
                 @if ( $product->image )
                 <div class="image">
                     <img src="{{ url('/images/products/'.$product->image) }}" alt="image" class="img-fluid">

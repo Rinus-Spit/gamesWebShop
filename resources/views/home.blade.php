@@ -39,6 +39,9 @@
                 <div class="card-body">
                     {{ $product->excerpt }}
                 </div>
+                <div class="price">
+                    @money($product->price)
+                </div>
                 @if ( $product->image )
                 <div class="image">
                     <img src="images/products/{{ $product->image }}" alt="image" class="img-fluid">
@@ -61,6 +64,9 @@
                 </div>
                 <div class="card-body">
                     {{ $product->excerpt }}
+                </div>
+                <div class="price">
+                    @money($product->price)
                 </div>
                 @if ( $product->image )
                 <div class="image">
@@ -86,6 +92,9 @@
                 <div class="card-body">
                     {{ $product->excerpt }}
                 </div>
+                <div class="price">
+                    @money($product->price)
+                </div>
                 @if ( $product->image )
                 <div class="image">
                     <img src="images/products/{{ $product->image }}" alt="image" class="img-fluid">
@@ -100,7 +109,8 @@
             @endforeach
             </div>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 border border-success rounded">
+            <h3>Games</h3>
             <div class="row">
             @foreach ($products as $product)
             <div class="col-md-3">
@@ -109,6 +119,9 @@
                 </div>
                 <div class="card-body">
                     {{ $product->excerpt }}
+                </div>
+                <div class="price">
+                    @money($product->price)
                 </div>
                 @if ( $product->image )
                 <div class="image">

@@ -126,6 +126,7 @@ class OrderLineController extends Controller
         $stock_update = $request->input('quantity') - $orderline->quantity;
         $orderline->update(['quantity' => $request->input('quantity')]);
         $orderline->update_stock($stock_update);
+        $orderline->order->update_amount();
         //dd($request);
 
         return redirect(route('orders.show', $orderline->order));
