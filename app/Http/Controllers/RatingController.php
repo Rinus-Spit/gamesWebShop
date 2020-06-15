@@ -43,7 +43,7 @@ class RatingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\rating  $rating
+     * @param  \App\Rating  $rating
      * @return \Illuminate\Http\Response
      */
     public function show(rating $rating)
@@ -54,7 +54,7 @@ class RatingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\rating  $rating
+     * @param  \App\Rating  $rating
      * @return \Illuminate\Http\Response
      */
     public function edit(rating $rating)
@@ -66,7 +66,7 @@ class RatingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\rating  $rating
+     * @param  \App\Rating  $rating
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, product $product)
@@ -82,7 +82,7 @@ class RatingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\rating  $rating
+     * @param  \App\Rating  $rating
      * @return \Illuminate\Http\Response
      */
     public function destroy(rating $rating)

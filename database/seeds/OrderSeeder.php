@@ -17,7 +17,7 @@ class OrderSeeder extends Seeder
         {
             if ($user->id >= 1) 
             {
-                $nr = rand(1, 5);
+                $nr = rand(1, 2);
                 $nr_products = rand(1, 5);
                 $products_nrs = array();
                 for ($i=1;$i<=$nr_products;$i++) $products_nrs[]=rand(1,12);
@@ -29,7 +29,7 @@ class OrderSeeder extends Seeder
                     'delivery_city' => $user->city,
                     'delivery_country' => $user->country,
                 ])->each(function($o) {
-                    factory(App\OrderLine::class, rand(1, 5))->create([
+                    factory(App\OrderLine::class, 1)->create([
                         'order_id' => $o->id,
                         'user_id' => $o->user_id,
                         'created_at' => $o->created_at,
