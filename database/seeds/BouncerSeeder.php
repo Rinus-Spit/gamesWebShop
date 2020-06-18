@@ -24,6 +24,9 @@ class BouncerSeeder extends Seeder
         Bouncer::allow('customer')->toManage( App\Order::class);
         Bouncer::allow('customer')->toManage( App\OrderLine::class);
         Bouncer::allow('customer')->to('view', App\Category::class);
+        Bouncer::allowEveryone()->toManage( App\Order::class);
+        Bouncer::allowEveryone()->toManage( App\OrderLine::class);
+        Bouncer::allowEveryone()->to('view', App\Category::class);
         $users = App\User::all();
         foreach ($users as $user) 
         {
