@@ -24,8 +24,12 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
+        if(env('ENFORCE_SSL', false)) {
+            $url->forceScheme('https');
+        }
+            
         Blade::directive('money', function ($amount) {
             return "<?php echo '&euro;' . number_format($amount, 2); ?>";
         });
