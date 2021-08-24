@@ -9,7 +9,7 @@ Deze webshop is gebouwd met Laravel en is gedeployed op Heroku op:
 
 De webshop is ook te zien op 
 
-- https://rinus.online/
+- https://rinusportfolio.nl/
 
 Je moet je eerst registreren. Als je daarna wilt bestellen kun je rechtsboven je profiel aanpassen. Kies dan voor customer. Wil je meer kies dan hier voor admin.
 
